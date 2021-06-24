@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "vector": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "iostream": "cpp",
+        "unordered_map": "cpp",
+        "xstring": "cpp",
+        "ostream": "cpp"
     }
 }
