@@ -37,10 +37,10 @@ string findSubString(string str)
 
         if(count == d_count)
         {
-            while(current_count[str[i]] > 1)
+            while(current_count[str[s]] > 1)
             {
-                if(current_count[str[i]] > 1)
-                    current_count[str[i]]--;
+                if(current_count[str[s]] > 1)
+                    current_count[str[s]]--;
                 s++;
             }
             int len = i-s+1;//current window length.
@@ -57,7 +57,7 @@ string findSubString(string str)
 
 int main()
 {
-	string str = "aabcbcdbca";
+	string str = "CCCbAbbBbbC";
 	cout << "Smallest window containing all distinct"
 			" characters is: "
 		<< findSubString(str);
