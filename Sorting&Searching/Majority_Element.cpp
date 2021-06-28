@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void findMajority(int arr[], int size)
+void findMajority(int arr[], int size)//this can be done without using extra space using moore's voting algorithm.
 {
     unordered_map<int, int> m;
     for(int i = 0; i < size; i++)
@@ -23,16 +23,13 @@ void findMajority(int arr[], int size)
         cout << "No Majority element" << endl;
 }
 
-// Driver code 
+
 int main() 
 { 
     int arr[] = {2, 2, 2, 2, 5, 5, 2, 3, 3}; 
     int n = sizeof(arr) / sizeof(arr[0]); 
-    
-    // Function calling 
+     
     findMajority(arr, n); 
 
     return 0; 
 } 
-
-// This code is contributed by codeMan_d
