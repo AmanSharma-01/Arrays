@@ -24,17 +24,17 @@ bool parenthesisCheck(string str)
         {
             case ')': a = s.top();
                       s.pop();
-                      if(a == '{' || a== ']') 
+                      if(a == '{' || a== '[') 
                       return false;
                       break;
             case '}': a = s.top();
                       s.pop();
-                      if(a == '(' || a== ']') 
+                      if(a == '(' || a== '[') 
                       return false;
                       break;
             case ']': a = s.top();
                       s.pop();
-                      if(a == '{' || a== ')') 
+                      if(a == '{' || a== '(') 
                       return false;
                       break;
         }
