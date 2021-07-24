@@ -3,17 +3,14 @@
 #include<bits/stdc++.h> 
 using namespace std; 
 
-// Separator node 
 const char MARKER = '$'; 
 
-// Structure for a binary tree node 
 struct Node 
 { 
     char data; 
     Node *left, *right; 
 }; 
 
-// A utility function to create a new node 
 Node* newNode(char data) 
 { 
     Node* node = new Node; 
