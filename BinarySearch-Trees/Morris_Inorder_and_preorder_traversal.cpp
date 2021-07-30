@@ -45,6 +45,44 @@ void MorrisTraversal(struct tNode* root)
     }
 }
 
+void MorrisTraversalPreorder(struct tNode* root)
+{
+	struct tNode *current, *pre;
+
+	if(!root) return;
+
+    current = root;
+    while(current != NULL)
+    {
+        if(current->left == NULL)
+        {
+            cout<<current->data<<" ";
+            current = current->right;
+        }
+        else
+        {
+            pre=current->left;
+
+            while(pre->right != NULL && pre->right != current)
+                pre = pre->right;
+            
+            if(pre->right == NULL)
+            {
+                pre->right = current;
+                cout<<current->data<<" ";
+                current = current->left;
+            }
+
+            else
+            {
+                pre->right = NULL;
+                current = current->right;
+            }
+        }
+
+    }
+}
+
 struct tNode* newtNode(int data)
 {
 	struct tNode* node = new tNode;
@@ -64,6 +102,7 @@ int main()
 	root->left->right = newtNode(5);
 
 	MorrisTraversal(root);
+    MorrisTraversalPreorder(root);
 
 	return 0;
 }
