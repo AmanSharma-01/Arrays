@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    string countSort(string s) {
+    string countSort(string& s) {
         vector<int> dp(26, 0);
         for(auto ch: s) dp[ch-'a']++;
         string ans="";
