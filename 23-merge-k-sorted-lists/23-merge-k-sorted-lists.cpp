@@ -12,22 +12,23 @@ class Solution {
 public:
     using pi = pair<int, ListNode*>;
     ListNode* mergeKLists(vector<ListNode*>& lists) {
+        priority_queue<pi, vector<pi>, greater<pi>> q;
         int k = lists.size();
         if(k==0) return NULL;
-        priority_queue<pi, vector<pi>, greater<pi>> q;
+        
         for(int i=0;i<k;i++) {
-            ListNode* curr = lists[i];
+            ListNode *curr = lists[i];
             if(curr) q.push({curr->val, curr});
         }
-        if(q.size()==0) return NULL;
         
-        ListNode* head = new ListNode(-1);
-        ListNode* curr = head;
+        if(q.size() == 0) return NULL;
+        
+        ListNode *head = new ListNode(-1), *curr=head;
         
         while(!q.empty()) {
             pi top = q.top();q.pop();
-            if(top.second->next)
-                q.push({top.second->next->val, top.second->next});
+            if(top.second->next) q.push({top.second->next->val, top.second->next});
+            
             curr->next = top.second;
             curr=curr->next;
         }
@@ -35,6 +36,8 @@ public:
         return head->next;
     }
 };
+
+
 
 
 
