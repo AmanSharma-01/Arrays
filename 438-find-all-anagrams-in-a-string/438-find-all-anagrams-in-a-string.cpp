@@ -4,21 +4,19 @@ public:
         vector<int> pfreq(26, 0);
         vector<int> sfreq(26, 0);
         vector<int> ans;
-        if(p.size() > s.size()) return {};
-        
+        if(p.size() > s.size()) return ans;
         int high=0, low=0;
-        
         while(high < p.size()) {
-            sfreq[s[high]-'a']++;
-            pfreq[p[high++]-'a']++;
+            pfreq[p[high]-'a']++;
+            sfreq[s[high++]-'a']++;
         }
         high--;
         while(high<s.size()) {
-            if(sfreq == pfreq) {
+            if(pfreq == sfreq) {
                 ans.push_back(low);
             }
             high++;
-            if(high != s.size()) {
+            if(high < s.size()) {
                 sfreq[s[high]-'a']++;
             }
             sfreq[s[low]-'a']--;
