@@ -32,7 +32,7 @@ public:
                 }
             }
         }
-                    return ans;
+        return ans;
     }
     
     vector<TreeNode*> generateTrees(int n) {
