@@ -1,22 +1,29 @@
 class Solution {
 public:
     bool isIsomorphic(string s, string t) {
-        unordered_map<char, char> mp;
-        vector<bool> vis(256, false);
-        int ss = s.size();
+        unordered_map<char, int> smp;
+        unordered_map<char, int> tmp;
+        string shash = "";
+        string thash = "";
         
-        for(int i=0;i<ss;i++) {
-            if(mp.find(s[i]) != mp.end()) {
-                if(mp[s[i]] != t[i]) return false;
+        for(int i=0;i<s.size();i++) {
+            if(smp.find(s[i]) == smp.end()) {
+                shash += to_string(i)+',';
+                smp[s[i]] = i;
             } else {
-                if(vis[t[i]]) return false;
-                else {
-                    mp[s[i]] = t[i];
-                    vis[t[i]] = true;
-                }
+                shash += to_string(smp[s[i]])+',';
             }
         }
         
-        return true;
+        for(int i=0;i<t.size();i++) {
+            if(tmp.find(t[i]) == tmp.end()) {
+                thash += to_string(i)+',';
+                tmp[t[i]] = i;
+            } else {
+                thash += to_string(tmp[t[i]])+',';
+            }
+        }
+        
+        return shash == thash;
     }
 };
