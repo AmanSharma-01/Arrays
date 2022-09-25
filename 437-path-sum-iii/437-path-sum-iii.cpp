@@ -14,21 +14,21 @@ public:
     int ans=0;
     vector<int> temp;
     
-    void count(TreeNode* root, int tar) {
+    void dfs(TreeNode* root, int tar) {
         if(!root) return;
         temp.push_back(root->val);
-        count(root->left, tar);
-        count(root->right, tar);
+        dfs(root->left, tar);
+        dfs(root->right, tar);
         long long sum=0;
         for(int i=temp.size()-1;i>=0;i--) {
-            sum+=temp[i];
-            if(sum == tar) ans++;
+            sum += temp[i];
+            if(sum==tar) ans++;
         }
         temp.pop_back();
     }
     
     int pathSum(TreeNode* root, int targetSum) {
-        count(root, targetSum);
+        dfs(root, targetSum);
         return ans;
     }
 };
