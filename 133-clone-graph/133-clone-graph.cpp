@@ -24,9 +24,10 @@ public:
     unordered_map<Node*, Node*> mp;
     Node* cloneGraph(Node* node) {
         if(!node) return NULL;
-        if(mp.find(node)==mp.end()) {
+        if(mp.find(node) == mp.end()) {
             Node* curr = new Node(node->val);
             mp[node] = curr;
+            
             for(int i=0;i<node->neighbors.size();i++) {
                 curr->neighbors.push_back(cloneGraph(node->neighbors[i]));
             }
