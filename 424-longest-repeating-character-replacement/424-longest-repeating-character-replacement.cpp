@@ -1,29 +1,29 @@
 class Solution {
 public:
     
-    int findMax(vector<int>& maxFreq) {
-        int ans = 0;
+    int maxFreq(vector<int>& freq) {
+        int ans=0;
         for(int i=0;i<26;i++) {
-            ans = max(ans, maxFreq[i]);
+            ans = max(ans, freq[i]);
         }
         return ans;
     }
     
     int characterReplacement(string s, int k) {
-        vector<int> maxFreq(26, 0);
-        int n = s.length();
-        int low=0,high=0;
-        int ans = 0;
+        vector<int> freq(26, 0);
+        int low=0, high=0, len=0, n=s.length();
         
         while(high < n) {
-            maxFreq[s[high]-'A']++;
-            while((high-low+1)-findMax(maxFreq) > k) {
-                maxFreq[s[low]-'A']--;
+            freq[s[high]-'A']++;
+            
+            while((high-low+1) - maxFreq(freq) > k) {
+                freq[s[low]-'A']--;
                 low++;
             }
-            ans = max(ans, high-low+1);
+            len = max(len, high-low+1);
             high++;
         }
-        return ans;
+        
+        return len;
     }
 };
