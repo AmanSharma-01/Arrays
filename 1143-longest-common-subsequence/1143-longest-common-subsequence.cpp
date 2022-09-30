@@ -1,13 +1,26 @@
 class Solution {
 public:
-    int longestCommonSubsequence(string a, string b) {
-        int dp[1001][1001] = {};
-        for(int i=0;i<a.size();i++) {
-            for(int j=0;j<b.size();j++) {
-                dp[i+1][j+1] = a[i]==b[j] ? dp[i][j]+1 : max(dp[i][j+1], dp[i+1][j]);
-            }
+    
+    int findLength(string& t1, string& t2, int p1, int p2, vector<vector<int>>& dp) {
+        if(p1<0||p2<0) {
+            return 0;
         }
         
-        return dp[a.size()][b.size()];
+        if(dp[p1][p2] != -1) {
+            return dp[p1][p2];
+        }
+        
+        if(t1[p1]==t2[p2]) {
+            return dp[p1][p2] = 1 + findLength(t1, t2, p1-1, p2-1, dp);
+        } else {
+            return dp[p1][p2] = max(findLength(t1, t2, p1, p2-1, dp), findLength(t1, t2, p1-1, p2, dp));
+        }
+    }
+    
+    int longestCommonSubsequence(string text1, string text2) {
+        int n = text1.size();
+        int m = text2.size();
+        vector<vector<int>> dp(n+1, vector<int>(m+1, -1));
+        return findLength(text1, text2, n-1, m-1, dp);
     }
 };
