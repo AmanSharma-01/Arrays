@@ -1,13 +1,14 @@
 class Solution {
 public:
+    vector<int> vis, col;
     
-    bool dfs(vector<vector<int>>& graph, int i, int c, vector<int>& vis, vector<int>& col) {
+    bool dfs(vector<vector<int>>& graph, int i, int c) {
         vis[i] = 1;
         col[i] = c;
         
         for(auto nxt: graph[i]) {
             if(vis[nxt] == 0) {
-                if(dfs(graph, nxt, 1^c, vis, col)==false) {
+                if(dfs(graph, nxt, 1^c)==false) {
                     return false;
                 }
             } else {
@@ -21,13 +22,12 @@ public:
     
     bool isBipartite(vector<vector<int>>& graph) {
         int n = graph.size();
-        vector<int> vis(n, 0);
-        vector<int> col(n, 0);
+        vis.resize(n, 0);
+        col.resize(n, 0);
         
         for(int i=0;i<n;i++) {
-            if(vis[i]==0 && dfs(graph, i, 0, vis, col) == false) {
+            if(vis[i] == 0 && dfs(graph, i, 0)==false)
                 return false;
-            }
         }
         return true;
     }
