@@ -13,12 +13,13 @@ public:
         vector<pair<int, int>> temp;
         
         for(int i=0;i<m;i++) {
-            int numOfSol=0;
-            for(int j=0;j<n;j++) {
-                if(mat[i][j] == 1) numOfSol++;
-                else break;
+            int low=0,high=n-1;
+            while(low<=high) {
+                int mid = low + (high-low)/2;
+                if(mat[i][mid]) low = mid+1;
+                else high=mid-1;
             }
-            temp.push_back({numOfSol, i});
+            temp.push_back({low, i});
         }
         sort(temp.begin(), temp.end(), compare);
         
