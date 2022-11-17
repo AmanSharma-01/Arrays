@@ -12,20 +12,23 @@ private:
 public:
     int maxProfit(int k, vector<int>& nums) {
         int n = nums.size();
-        vector<vector<vector<int>>> dp(n+1, vector<vector<int>> (2, vector<int> (k+1, 0)));
+        vector<vector<int>> after(2, vector<int> (k+1, 0)), curr(2, vector<int> (k+1, 0));
+        
         for(int idx=n-1;idx>=0;idx--) {
             for(int buy=0;buy<=1;buy++) {
                 for(int cap=1;cap<=k;cap++) {
                     long pro = 0;
                     if(buy) {
-                        pro = max(dp[idx+1][0][cap]-nums[idx], dp[idx+1][1][cap]);
+                        pro = max(after[0][cap]-nums[idx], after[1][cap]);
                     } else {
-                        pro = max(dp[idx+1][1][cap-1]+nums[idx], dp[idx+1][0][cap]);
+                        pro = max(after[1][cap-1]+nums[idx], after[0][cap]);
                     }
-                    dp[idx][buy][cap] = pro;
+                    curr[buy][cap] = pro;
                 }
+                after = curr;
             }
         }
-        return dp[0][1][k];
+        
+        return curr[1][k];
     }
 };
