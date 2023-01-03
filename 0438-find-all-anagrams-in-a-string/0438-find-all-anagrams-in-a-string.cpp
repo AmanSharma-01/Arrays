@@ -1,28 +1,28 @@
 class Solution {
 public:
     vector<int> findAnagrams(string s, string p) {
-        vector<int> ans;
-        vector<int> pfreq(26, 0);
-        vector<int> sfreq(26, 0);
-        int high=0, low=0;
-        int n = p.size();
-        int m = s.size();
+        vector<int> sfreq(26, 0), pfreq(26, 0), ans;
+        int ss=s.size(), ps=p.size();
+        if(ps > ss) return {};
         
-        if(n > m) return {};
-        
-        while(high < n) {
+        int low=0, high=0;
+        while(high < ps) {
             pfreq[p[high]-'a']++;
             sfreq[s[high++]-'a']++;
         }
+        
         high--;
-        while(high < m) {
+        
+        while(high < ss) {
             if(sfreq == pfreq) {
                 ans.push_back(low);
             }
+            
             high++;
-            if(high < m) {
+            if(high < ss) {
                 sfreq[s[high]-'a']++;
             }
+            
             sfreq[s[low]-'a']--;
             low++;
         }
